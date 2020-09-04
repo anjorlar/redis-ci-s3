@@ -20,7 +20,7 @@ describe('When logged in', () => {
   test('can see blog create form', async () => {
     const label = await page.getContentsOf('form label');
 
-    expect(label).toEqual('Blog Title');
+    expect(label).toBe('Blog Title');
   });
 
   describe('And using valid inputs', () => {
@@ -33,7 +33,7 @@ describe('When logged in', () => {
     test('Submitting takes user to review screen', async () => {
       const text = await page.getContentsOf('h5');
 
-      expect(text).toEqual('Please confirm your entries');
+      expect(text).toBe('Please confirm your entries');
     });
 
     test('Submitting then saving adds blog to index page', async () => {
@@ -43,8 +43,8 @@ describe('When logged in', () => {
       const title = await page.getContentsOf('.card-title');
       const content = await page.getContentsOf('p');
 
-      expect(title).toEqual('My Title');
-      expect(content).toEqual('My Content');
+      expect(title).toBe('My Title');
+      expect(content).toBe('My Content');
     });
   });
 
@@ -57,8 +57,8 @@ describe('When logged in', () => {
       const titleError = await page.getContentsOf('.title .red-text');
       const contentError = await page.getContentsOf('.content .red-text');
 
-      expect(titleError).toEqual('You must provide a value');
-      expect(contentError).toEqual('You must provide a value');
+      expect(titleError).toBe('You must provide a value');
+      expect(contentError).toBe('You must provide a value');
     });
   });
 });
@@ -83,7 +83,7 @@ describe('User is not logged in', () => {
     const results = await page.execRequests(actions);
 
     for (let result of results) {
-      expect(result).toEqual({ error: 'You must log in!' });
+      expect(result).toBe({ error: 'You must log in!' });
     }
   });
 });
